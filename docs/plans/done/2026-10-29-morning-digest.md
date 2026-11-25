@@ -1,8 +1,9 @@
 ---
 plan: morning-digest
-status: ready
+status: done
 owner: rook
 opened: 2026-10-29
+closed: 2026-11-25
 ---
 
 # Morning digest
@@ -115,3 +116,16 @@ page again with `LANE_MARKER` unset (the banner reads "no marker set") and uploa
 link. Move this plan to `docs/plans/done/` with its issue list.
 
 Done when: the preview link no longer shows the lane marker.
+
+## Issues
+
+| # | Issue | Blocked by | Worker | Closed |
+|---|-------|-----------|--------|--------|
+| 1 | [Digest contract](https://github.com/GodEvil1991/mega-s01e04-before-i-looked/issues/1) | — | codex · gpt-6 · default | 2026-11-25 |
+| 2 | [Read nightly logs with full diagnostics](https://github.com/GodEvil1991/mega-s01e04-before-i-looked/issues/2) | #1 | codex · gpt-6.2-astra · high | 2026-11-25 |
+| 3 | [Digest HTML route](https://github.com/GodEvil1991/mega-s01e04-before-i-looked/issues/3) | #1 | codex · gpt-6.2-sol · medium | 2026-11-25 |
+| 4 | [Digest JSON endpoint](https://github.com/GodEvil1991/mega-s01e04-before-i-looked/issues/4) | #1 | codex · gpt-6.2-sol · medium | 2026-11-25 |
+| 5 | [Status board links and counts](https://github.com/GodEvil1991/mega-s01e04-before-i-looked/issues/5) | #1 | codex · gpt-6.2-sol · medium | 2026-11-25 |
+| 6 | [Digest route tests](https://github.com/GodEvil1991/mega-s01e04-before-i-looked/issues/6) | #1 | codex · gpt-6.2-sol · medium | 2026-11-25 |
+| 7 | [Public review preview](https://github.com/GodEvil1991/mega-s01e04-before-i-looked/issues/7) | #2–#6 | codex · gpt-6 · default | 2026-11-25 |
+| 8 | [Remove the preview marker and archive the plan](https://github.com/GodEvil1991/mega-s01e04-before-i-looked/issues/8) | #7 | codex · gpt-6 · default | 2026-11-25 |
