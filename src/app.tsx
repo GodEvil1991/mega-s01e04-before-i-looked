@@ -1,11 +1,20 @@
 import { Hono } from 'hono';
 import { loadConfig, type RigConfig } from './config.js';
-import { readNightDetails } from './digest/reader.js';
+import { readNight, readNightDetails } from './digest/reader.js';
 import { lane } from './lane.js';
 import { readStatus } from './status.js';
 import { DigestPage } from './views/digest.js';
 import { Layout } from './views/layout.js';
 import { StatusBoard } from './views/status.js';
+
+function isCalendarNight(night: string): boolean {
+  const date = new Date(night + 'T00:00:00Z');
+  return Number.isFinite(date.getTime()) && date.toISOString().slice(0, 10) === night;
+}
+
+function isMissingRunLog(error: unknown): boolean {
+  return error instanceof Error && 'code' in error && error.code === 'ENOENT';
+}
 
 export function createApp(config: RigConfig = loadConfig()) {
   const app = new Hono();
@@ -22,10 +31,7 @@ export function createApp(config: RigConfig = loadConfig()) {
 
   app.get('/digest/:night', (c) => {
     const night = c.req.param('night');
-    const date = new Date(night + 'T00:00:00Z');
-    if (!Number.isFinite(date.getTime()) || date.toISOString().slice(0, 10) !== night) {
-      return c.notFound();
-    }
+    if (!isCalendarNight(night)) return c.notFound();
 
     try {
       const digest = readNightDetails(config.runsDir, night);
@@ -35,9 +41,19 @@ export function createApp(config: RigConfig = loadConfig()) {
         </Layout>,
       );
     } catch (error) {
-      if (error instanceof Error && 'code' in error && error.code === 'ENOENT') {
-        return c.notFound();
-      }
+      if (isMissingRunLog(error)) return c.notFound();
+      throw error;
+    }
+  });
+
+  app.get('/api/digest/:night', (c) => {
+    const night = c.req.param('night');
+    if (!isCalendarNight(night)) return c.notFound();
+
+    try {
+      return c.json(readNight(config.runsDir, night));
+    } catch (error) {
+      if (isMissingRunLog(error)) return c.notFound();
       throw error;
     }
   });
