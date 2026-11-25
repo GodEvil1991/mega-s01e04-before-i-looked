@@ -10,6 +10,11 @@ type RunRecord = {
   error?: string;
 };
 
+export function isCalendarNight(night: string): boolean {
+  const date = new Date(night + 'T00:00:00Z');
+  return Number.isFinite(date.getTime()) && date.toISOString().slice(0, 10) === night;
+}
+
 function isRunRecord(value: unknown): value is RunRecord {
   if (typeof value !== 'object' || value === null) return false;
   return 'at' in value && typeof value.at === 'string' && Number.isFinite(Date.parse(value.at))

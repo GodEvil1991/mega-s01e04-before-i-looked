@@ -1,16 +1,11 @@
 import { Hono } from 'hono';
 import { loadConfig, type RigConfig } from './config.js';
-import { readNight, readNightDetails } from './digest/reader.js';
+import { isCalendarNight, readNight, readNightDetails } from './digest/reader.js';
 import { lane } from './lane.js';
 import { readStatus } from './status.js';
 import { DigestPage } from './views/digest.js';
 import { Layout } from './views/layout.js';
 import { StatusBoard } from './views/status.js';
-
-function isCalendarNight(night: string): boolean {
-  const date = new Date(night + 'T00:00:00Z');
-  return Number.isFinite(date.getTime()) && date.toISOString().slice(0, 10) === night;
-}
 
 function isMissingRunLog(error: unknown): boolean {
   return error instanceof Error && 'code' in error && error.code === 'ENOENT';
