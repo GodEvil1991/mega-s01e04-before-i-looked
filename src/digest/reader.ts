@@ -38,9 +38,10 @@ function* readLines(runsDir: string, night: string): Generator<{ line: number; e
   }
 }
 
-export const readNight: ReadNight = (runsDir, night) => {
+export function readNightDetails(runsDir: string, night: string) {
   const jobs = new Map<string, { row: DigestRow; lastErrorTime: number }>();
   const malformedLines: MalformedLine[] = [];
+  const failedJobs = new Set<string>();
 
   for (const entry of readLines(runsDir, night)) {
     if ('reason' in entry) {
@@ -62,6 +63,7 @@ export const readNight: ReadNight = (runsDir, night) => {
     const time = Date.parse(at);
     row.runs++;
     if (status === 'retry') row.retries++;
+    if (status === 'fail') failedJobs.add(job);
     if (time < Date.parse(row.firstAt)) row.firstAt = at;
     if (time >= Date.parse(row.lastAt)) {
       row.lastAt = at;
@@ -77,6 +79,11 @@ export const readNight: ReadNight = (runsDir, night) => {
     }
   }
   const rows = Array.from(jobs.values(), ({ row }) => row).sort((a, b) => a.job.localeCompare(b.job));
+  return { rows, malformedLines, failedJobs };
+}
+
+export const readNight: ReadNight = (runsDir, night) => {
+  const { rows, malformedLines } = readNightDetails(runsDir, night);
   return { rows, malformedLines };
 };
 

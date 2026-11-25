@@ -16,6 +16,11 @@ const css = `
   th { color: var(--mute); font-weight: normal; }
   .warn { color: var(--warn); }
   .mute { color: var(--mute); }
+  .digest-table td, .digest-table tbody th { vertical-align: top; overflow-wrap: anywhere; }
+  .digest-table tbody th { color: var(--fg); }
+  .digest-errors { margin: 0; padding-left: 1.25rem; }
+  .digest-errors li + li { margin-top: .5rem; }
+  .digest-error-message { white-space: pre-wrap; }
 `;
 
 export function Layout(props: { title: string; lane: Lane; children: Child }) {
