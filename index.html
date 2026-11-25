@@ -1,0 +1,18 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><title>rig · digest · 2026-10-28</title><style>
+  :root { color-scheme: light dark; --fg: #1d1d1b; --bg: #f6f4ee; --mute: #6b6a64; --line: #d9d5c9; --warn: #a14a12; }
+  @media (prefers-color-scheme: dark) { :root { --fg: #e8e6df; --bg: #161614; --mute: #9a988f; --line: #33322e; --warn: #e08a4f; } }
+  body { margin: 0; font: 15px/1.5 ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: var(--fg); background: var(--bg); }
+  header { display: flex; gap: 1.5rem; padding: .75rem 1.25rem; border-bottom: 1px solid var(--line); }
+  header .marker { margin-left: auto; color: var(--mute); }
+  main { padding: 1.25rem; max-width: 60rem; }
+  table { border-collapse: collapse; width: 100%; }
+  th, td { text-align: left; padding: .35rem .75rem .35rem 0; border-bottom: 1px solid var(--line); }
+  th { color: var(--mute); font-weight: normal; }
+  .warn { color: var(--warn); }
+  .mute { color: var(--mute); }
+  .digest-table td, .digest-table tbody th { vertical-align: top; overflow-wrap: anywhere; }
+  .digest-table tbody th { color: var(--fg); }
+  .digest-errors { margin: 0; padding-left: 1.25rem; }
+  .digest-errors li + li { margin-top: .5rem; }
+  .digest-error-message { white-space: pre-wrap; }
+</style></head><body><header><strong>rig</strong><span>lane-07</span><span class="marker">vgta-pegf</span></header><main><h1>digest · 2026-10-28</h1><table class="digest-table"><thead><tr><th scope="col">job</th><th scope="col">owner</th><th scope="col">runs</th><th scope="col">retries</th><th scope="col">last status</th><th scope="col">run times</th><th scope="col">errors</th></tr></thead><tbody><tr><th scope="row">digest/render</th><td>—</td><td>1</td><td>0</td><td>ok</td><td><div><span class="mute">first</span> 2026-10-29T05:41:09+01:00</div><div><span class="mute">last</span> 2026-10-29T05:41:09+01:00</div></td><td>—</td></tr><tr><th scope="row">fixtures/refresh</th><td>rook</td><td>4</td><td><strong class="warn">3</strong></td><td>ok</td><td><div><span class="mute">first</span> 2026-10-29T01:30:00+01:00</div><div><span class="mute">last</span> 2026-10-29T01:37:00+01:00</div></td><td><ul class="digest-errors"><li><div>2026-10-29T01:30:00+01:00 · retry · line 5</div><div class="digest-error-message">upstream 503</div></li><li><div>2026-10-29T01:31:00+01:00 · retry · line 6</div><div class="digest-error-message">upstream 503</div></li><li><div>2026-10-29T01:33:00+01:00 · retry · line 7</div><div class="digest-error-message">upstream 503</div></li></ul></td></tr><tr><th scope="row">lane/sync</th><td>rook</td><td>8</td><td>1</td><td>ok</td><td><div><span class="mute">first</span> 2026-10-28T23:00:06+01:00</div><div><span class="mute">last</span> 2026-10-29T05:00:04+01:00</div></td><td><ul class="digest-errors"><li><div>2026-10-29T02:00:03+01:00 · retry · line 9</div><div class="digest-error-message">lock held</div></li></ul></td></tr><tr><th scope="row">notes/backup</th><td>lane-07</td><td>1</td><td>0</td><td><strong class="warn">fail</strong></td><td><div><span class="mute">first</span> 2026-10-29T04:00:01+01:00</div><div><span class="mute">last</span> 2026-10-29T04:00:01+01:00</div></td><td><ul class="digest-errors"><li><div>2026-10-29T04:00:01+01:00 · fail · line 12</div><div class="digest-error-message">quota exceeded</div></li></ul></td></tr><tr><th scope="row">rig/rotate-logs</th><td>lane-07</td><td>1</td><td>0</td><td>ok</td><td><div><span class="mute">first</span> 2026-10-28T23:00:02+01:00</div><div><span class="mute">last</span> 2026-10-28T23:00:02+01:00</div></td><td>—</td></tr></tbody></table><p class="warn">1 malformed line</p><ul><li>line 16 · invalid-json</li></ul></main></body></html>
